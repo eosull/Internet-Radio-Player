@@ -1,0 +1,3 @@
+[submodule "internetradio/internetradio/pyradios"]
+	path = internetradio/internetradio/pyradios
+	url = https://github.com/andreztz/pyradios.git
