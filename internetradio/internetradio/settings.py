@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-eosull-internetradiopla-z04imlebsiy.ws-eu108.gitpod.io']
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-z04imlebsiy.ws-eu108.gitpod.io']
 
 # Application definition
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'browse',
 ]
 
 MIDDLEWARE = [
