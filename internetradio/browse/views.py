@@ -9,9 +9,17 @@ def index(request):
         if form.is_valid():
             rb = RadioBrowser()
             search_term = form.cleaned_data['search_term']
-            search_result = rb.search(name=search_term)
-            new_url = search_result[0]["url"].replace("http://", "https://")
-            return render(request, 'index.html', {'form': form, 'search_result': search_result, 'new_url': new_url})
+            search_result = rb.search(name=search_term, hidebroken=True)
+
+            if not search_result:
+                return render(request, 'index.html', {'form': form})
+            else:
+                context = {
+                    'form': form,
+                    'search_result': search_result,
+                }
+                return render(request, 'index.html', context)
+
     else:
         form = SearchForm()
         return render(request, 'index.html', {'form': form})
