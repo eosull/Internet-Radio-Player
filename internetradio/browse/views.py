@@ -10,7 +10,7 @@ def index(request):
             searched = True
             rb = RadioBrowser()
             search_term = form.cleaned_data['search_term']
-            search_result = rb.search(name=search_term, hidebroken=True)
+            search_result = rb.search(name=search_term, hidebroken=True)            
 
             if not search_result:
                 context = {

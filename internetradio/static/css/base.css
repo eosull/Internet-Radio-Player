@@ -1,6 +1,5 @@
 
 /* Site Styling */
-
 body {
     height: 100vh;
 }
@@ -9,9 +8,17 @@ body {
     border: none;
 }
 
-
 /* Audio player styling */
 .audio-player-button {
     background-color: none;
     border: none;
+}
+
+/* Modal Styling */
+.modal-dialog {
+    width: 50%;
+}
+
+.modal-content {
+    padding: 10px;
 }

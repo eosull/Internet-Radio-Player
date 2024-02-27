@@ -12,6 +12,7 @@
 </head>
 <body>
     <h1><i class="bi bi-broadcast"></i> MyRadioApp</h1>
+    <!-- Search Box -->
     <div class="container my-5 text-center">
       <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5 d-flex align-items-center justify-content-center">
         <form method="post">
@@ -24,7 +25,8 @@
         
     {% if searched %}
       {% if search_result %}
-      <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
+      <!-- Search Results -->
+      <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
         <div class="container px-4 py-5" id="custom-cards">
             <h2 class="pb-2 border-bottom">Results</h2>
             <!-- Display the response data here -->
@@ -76,8 +78,9 @@
           <div class="b-example-divider"></div>
       </div>
       {% else %}
-      <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
-        <div class="modal-dialog" role="document">
+      <!-- No Results -->
+      <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+        <div class="modal-dialog m-auto" role="document">
           <div class="modal-content rounded-4 shadow">
             <div class="modal-header border-bottom-0">
               <h2 class="modal-title fs-5">No results</h2>
@@ -90,6 +93,9 @@
       </div>
       {% endif %}
     {% endif %}
+    <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
+      Categories
+    </div>
 </body>
 
 <script src="{% static 'js/script.js' %}"></script>
