@@ -93,8 +93,19 @@
       </div>
       {% endif %}
     {% endif %}
-    <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
-      Categories
+    <!-- Categories -->
+    <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5 h-100">
+        <div class="row">
+          <div class="col-6 col-md-4">
+            <a href="{% url 'index' %}?country=US" class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center">USA</a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a href="{% url 'index' %}?country=GB" class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center">UK</a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a href="{% url 'index' %}?country=IE" class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center">Ireland</a>
+          </div>
+        </div>
     </div>
 </body>
 

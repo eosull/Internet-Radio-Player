@@ -26,13 +26,19 @@ def index(request):
                 }
                 return render(request, 'index.html', context)
 
-    else:
-        searched = False
-        form = SearchForm()
-        context = {
-                    'form': form,
-                    'searched': searched
-                }
-        return render(request, 'index.html', context)
+    if request.method == 'GET':
+        if 'country' in request.GET:
+            country = request.GET['country']
+            print(f'Country = {country}')
+            rb = RadioBrowser()
+            search_result = rb.search(countrycode=country, hidebroken=True)
+            searched = True
+            form = SearchForm()
+            context = {
+                        'form': form,
+                        'searched': searched,
+                        'search_result': search_result
+                    }
+            return render(request, 'index.html', context)
 
     return render(request, 'index.html')
