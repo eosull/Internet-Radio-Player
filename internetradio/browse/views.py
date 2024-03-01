@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
+
 from .forms import SearchForm
 
 from pyradios import RadioBrowser
@@ -10,9 +12,14 @@ def index(request):
             searched = True
             rb = RadioBrowser()
             search_term = form.cleaned_data['search_term']
-            search_result = rb.search(name=search_term, hidebroken=True)            
+            search_return = rb.search(name=search_term, hidebroken=True)
+            request.session['search_return'] = search_return
+            paginator = Paginator(search_return, 12)
 
-            if not search_result:
+            page_number = request.GET.get("page")
+            results = paginator.get_page(page_number)         
+
+            if not results:
                 context = {
                     'form': form,
                     'searched': searched
@@ -21,24 +28,46 @@ def index(request):
             else:
                 context = {
                     'form': form,
-                    'search_result': search_result,
+                    'results': results,
                     'searched': searched
                 }
                 return render(request, 'index.html', context)
 
     if request.method == 'GET':
+
+        context = {}
+
         if 'country' in request.GET:
             country = request.GET['country']
-            print(f'Country = {country}')
-            rb = RadioBrowser()
-            search_result = rb.search(countrycode=country, hidebroken=True)
-            searched = True
-            form = SearchForm()
-            context = {
-                        'form': form,
-                        'searched': searched,
-                        'search_result': search_result
-                    }
-            return render(request, 'index.html', context)
+            paginator = Paginator(country_sort(country), 12)
 
-    return render(request, 'index.html')
+            if 'page' in request.GET:
+                page_number = request.GET.get('page')
+                results = paginator.get_page(page_number)
+                context.update({'results': results})
+            else:
+                results = paginator.get_page(1)
+                context.update({'results': results})
+        
+            sorted = True
+            context.update({'sorted': sorted})
+
+        else:
+            if 'page' in request.GET:
+                paginator = Paginator(request.session['search_return'], 12)
+                page_number = request.GET.get('page')
+                results = paginator.get_page(page_number)
+                context.update({'results': results})
+                sorted = False
+                searched = True
+                context.update({'searched': searched})
+
+        form = SearchForm()
+        context.update({'form': form})
+        return render(request, 'index.html', context)
+        print(request.session['search_return'])
+
+def country_sort(term):
+    rb = RadioBrowser()
+    search_return = rb.search(countrycode=term, hidebroken=True)
+    return search_return

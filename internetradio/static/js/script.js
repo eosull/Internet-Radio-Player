@@ -2,31 +2,37 @@
 // https://css-tricks.com/lets-create-a-custom-audio-player/#aa-display-the-audio-duration
 
 
-// variable for the button that will contain both icons
-const playIcon = document.getElementById('play-icon');
-const pauseIcon = document.getElementById('pause-icon');
+// Arrays with individually ID'd play/pause buttons
+const playButtons = document.getElementsByClassName('audio-play');
+const pauseButtons = document.getElementsByClassName('audio-pause');
+// Audio element
 const audio = document.querySelector('audio');
-// variable that will store the button’s current state (play or pause)
 let state = 'play';
 
-playIcon.addEventListener('click', () => {
+// Loop through all play buttons listening for clicks
+for (const playButton of playButtons) {
+  playButton.addEventListener('click', () => {
     if(state === 'play') {
       audio.play()
-      playIcon.classList.add('d-none')
-      pauseIcon.classList.replace('d-none', 'd-block')  
+      playButton.classList.add('d-none')
+      playButton.nextElementSibling.classList.replace('d-none', 'd-block')
       state = 'pause';
     } else {
       state = 'play';
     }
   });
+}
 
-  pauseIcon.addEventListener('click', () => {
+// Loop through all pause buttons listening for clicks
+for (const pauseButton of pauseButtons) {
+  pauseButton.addEventListener('click', () => {
     if(state === 'pause') {
       audio.pause()
-      pauseIcon.classList.replace('d-block', 'd-none')
-      playIcon.classList.replace('d-none', 'd-block')
+      pauseButton.classList.replace('d-block', 'd-none')
+      pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
       state = 'play';
     } else {
       state = 'pause';
     }
   });
+}

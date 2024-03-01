@@ -23,8 +23,8 @@
       </div>
     </div>
         
-    {% if searched %}
-      {% if search_result %}
+    {% if searched or sorted %}
+      {% if results %}
       <!-- Search Results -->
       <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
         <div class="container px-4 py-5" id="custom-cards">
@@ -33,22 +33,18 @@
             <!-- Layout core from Bootstrap features examples -->
             <!-- https://getbootstrap.com/docs/5.3/examples/features/ -->
             <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-            {% for result in search_result %}
+            {% for result in results %}
               <div class="col">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" id="search_result_card">
                   <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                     <h3 class="mb-4 display-6 lh-1 fw-bold">{{ result.name }}</h3>
 
-                    <!-- <audio src="{{ result.url }}" controls>
-                      Your browser does not support the audio element.
-                    </audio> -->
-
                     <div id="audio-player-container">
                       <audio src="{{ result.url }}">
                         Your browser does not support the audio element.
                       </audio>
-                      <button id="play-icon" class="audio-player-button text-bg-dark"><i class="bi bi-play-fill fs-1"></i></button>
-                      <button id="pause-icon" class="audio-player-button text-bg-dark d-none"><i class="bi bi-pause-fill fs-1"></i></button>
+                      <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play text-bg-dark"><i class="bi bi-play-fill fs-1"></i></button>
+                      <button id="{{ result.stationuuid }}pause-icon" class="audio-player-button audio-pause text-bg-dark d-none"><i class="bi bi-pause-fill fs-1"></i></button>
                     </div>
 
                     <ul class="d-flex list-unstyled mt-auto">
@@ -73,11 +69,43 @@
                 </div>
               </div>
           {% endfor %}
+
+          <!-- Pagination -->
+          <div class="pagination d-flex align-items-center justify-content-center m-auto p-5">
+            <span class="step-links">
+                {% if results.has_previous %}
+                    {% if searched %}
+                    <a href="?page=1" class="d-inline nav-link">1</a>
+                    <a href="?page={{ results.previous_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-left-circle"></i></a>
+                    {% endif %}
+                    {% if sorted %}
+                    <a href="{{ request.get_full_path }}&page=1" class="d-inline nav-link">1</a>
+                    <a href="{{ request.get_full_path }}&page={{ results.previous_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-left-circle"></i></a>
+                    {% endif %}
+                {% endif %}
+        
+                <span class="current">
+                    {{ results.number }} of {{ results.paginator.num_pages }}
+                </span>
+        
+                {% if results.has_next %}
+                  {% if searched %}
+                  <a href="?page={{ results.next_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-right-circle"></i></a>
+                  <a href="?page={{ results.paginator.num_pages }}" class="d-inline nav-link">{{ results.paginator.num_pages }}</a>
+                  {% endif %}
+                  {% if sorted %}
+                  <a href="{{ request.get_full_path }}&page={{ results.next_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-right-circle"></i></a>
+                  <a href="{{ request.get_full_path }}&page={{ results.paginator.num_pages }}" class="d-inline nav-link">{{ results.paginator.num_pages }}</a>
+                  {% endif %}
+                {% endif %}
+            </span>
+          </div>
             </div>
         </div>
           <div class="b-example-divider"></div>
       </div>
       {% else %}
+
       <!-- No Results -->
       <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
         <div class="modal-dialog m-auto" role="document">
@@ -93,6 +121,8 @@
       </div>
       {% endif %}
     {% endif %}
+
+
     <!-- Categories -->
     <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5 h-100">
         <div class="row">
@@ -108,6 +138,5 @@
         </div>
     </div>
 </body>
-
 <script src="{% static 'js/script.js' %}"></script>
 </html>
