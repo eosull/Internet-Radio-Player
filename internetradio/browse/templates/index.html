@@ -11,7 +11,9 @@
     <title>My Internet Radio</title>
 </head>
 <body>
-    <h1><i class="bi bi-broadcast"></i> MyRadioApp</h1>
+    <a href="{% url 'index' %}"><h1><i class="bi bi-broadcast"></i> MyRadioApp</h1></a>
+
+
     <!-- Search Box -->
     <div class="container my-5 text-center">
       <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5 d-flex align-items-center justify-content-center">
@@ -23,6 +25,7 @@
       </div>
     </div>
         
+
     {% if searched or sorted %}
       {% if results %}
       <!-- Search Results -->
@@ -40,7 +43,7 @@
                     <h3 class="mb-4 display-6 lh-1 fw-bold">{{ result.name }}</h3>
 
                     <div id="audio-player-container">
-                      <audio src="{{ result.url }}">
+                      <audio src="{{ result.url }}" id="{{ result.stationuuid }}audio">
                         Your browser does not support the audio element.
                       </audio>
                       <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play text-bg-dark"><i class="bi bi-play-fill fs-1"></i></button>
@@ -106,6 +109,7 @@
       </div>
       {% else %}
 
+
       <!-- No Results -->
       <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
         <div class="modal-dialog m-auto" role="document">
@@ -137,6 +141,8 @@
           </div>
         </div>
     </div>
+
+
 </body>
 <script src="{% static 'js/script.js' %}"></script>
 </html>

@@ -5,14 +5,16 @@
 // Arrays with individually ID'd play/pause buttons
 const playButtons = document.getElementsByClassName('audio-play');
 const pauseButtons = document.getElementsByClassName('audio-pause');
-// Audio element
-const audio = document.querySelector('audio');
+
 let state = 'play';
 
 // Loop through all play buttons listening for clicks
 for (const playButton of playButtons) {
   playButton.addEventListener('click', () => {
     if(state === 'play') {
+      // Selecting audio element using custom ID format
+      let audioId = playButton.getAttribute('id').replace('play-icon', 'audio');
+      let audio = document.querySelector('#' + CSS.escape(audioId));
       audio.play()
       playButton.classList.add('d-none')
       playButton.nextElementSibling.classList.replace('d-none', 'd-block')
@@ -27,6 +29,9 @@ for (const playButton of playButtons) {
 for (const pauseButton of pauseButtons) {
   pauseButton.addEventListener('click', () => {
     if(state === 'pause') {
+      // Selecting audio element using custom ID format
+      let audioId = pauseButton.getAttribute('id').replace('pause-icon', 'audio');
+      let audio = document.querySelector('#' + CSS.escape(audioId));
       audio.pause()
       pauseButton.classList.replace('d-block', 'd-none')
       pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
