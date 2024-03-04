@@ -6,6 +6,40 @@ body {
 
 .btn-primary {
     border: none;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Background textures */
+/* Patterns built using https://www.magicpattern.design/tools/css-backgrounds */
+.result-card {
+    background-color: #ffffff;
+    opacity: 1;
+    background-image:  linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077);
+    background-size: 74px 130px;
+    background-position: 0 0, 0 0, 37px 65px, 37px 65px, 0 0, 37px 65px;
+}
+
+.country-card {
+    background-color: #ffffff;
+    opacity: 1;
+    background-image: radial-gradient(circle at center center, #000000, #e5e5f7), repeating-radial-gradient(circle at center center, #000000, #000000, 37px, transparent 74px, transparent 37px);
+    background-blend-mode: multiply;
+}
+
+.search-banner {
+    background-color: #94c1ff;
+    opacity: 1;
+    background-image:  radial-gradient(#000000 6px, transparent 6px), radial-gradient(#000000 12px, #94c1ff 12px);
+    background-size: 80px 80px;
+    background-position: 0 0,40px 40px;
+}
+
+.modal-sheet {
+    background-color: #94c1ff !important;
 }
 
 /* Audio player styling */
@@ -21,4 +55,9 @@ body {
 
 .modal-content {
     padding: 10px;
+}
+
+/* Sorting button styling */
+.category-buttons {
+    height: 33vh;
 }
