@@ -45,7 +45,7 @@
                   <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
 
                     <!-- Station Title -->
-                    <h3 class="mb-4 display-6 lh-1 fw-bold">{{ result.name|truncatechars:30 }}</h3>
+                    <h3 class="mb-4 display-6 lh-1 fw-bold" id="{{ result.stationuuid }}station-name">{{ result.name|truncatechars:30 }}</h3>
 
                     <!-- Audio Player -->
                     <div id="audio-player-container">
@@ -184,6 +184,19 @@
       <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
     </ul>
   </footer>
+</div>
+
+<div class="playback-footer d-none">
+    <div class="col-md-4 d-flex align-items-center">
+      <span class="mb-3 mb-md-0 text-body-secondary"></span>
+      <i class="bi bi-arrow-down-short fs-2 d-block" id="hide-playback"></i>
+      <i class="bi bi-arrow-up-short fs-2 d-none" id="show-playback"></i>
+      <div class="playback-bar-audio-player">
+        <h3 class="station-title">Station Name</h3>
+        <button id="playback-bar-play-icon" class="audio-player-button pb-bar-button audio-play text-bg-dark d-none"><i class="bi bi-play-fill fs-1"></i></button>
+        <button id="playback-bar-pause-icon" class="audio-player-button pb-bar-button audio-pause text-bg-dark d-block"><i class="bi bi-pause-fill fs-1"></i></button>
+      </div>
+    </div>
 </div>
 
 </body>

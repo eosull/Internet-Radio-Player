@@ -83,3 +83,26 @@ h1, h2 {
 .country-card {
     box-shadow: rgba(255, 255, 255, 0.1) -4px 9px 25px -6px;
 }
+
+/* Playback bar */
+
+.playback-footer {
+    position:fixed;
+    bottom:0;
+    width: 100vw;
+    height: 15vh;
+    background-color: rgba(255, 255, 255, 0.671);
+    transition: all 0.5s ease-out;
+}
+
+#hide-playback:hover {
+    cursor: pointer;
+}
+
+#show-playback:hover {
+    cursor: pointer;
+}
+
+.playback-footer-hidden {
+    height: 7.5vh;
+}
