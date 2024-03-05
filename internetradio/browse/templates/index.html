@@ -8,15 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <title>My Internet Radio</title>
 </head>
 <body class=" search-banner ">
-    <a href="{% url 'index' %}" class="text-black"><h1><i class="bi bi-broadcast"></i> MyRadioApp</h1></a>
+    <a href="{% url 'index' %}" class="text-black"><h1><i class="bi bi-broadcast fs-3"></i>-----MyRadio-----<i class="bi bi-broadcast fs-3"></i></h1></a>
 
 
     <!-- Search Box -->
-    <div class="container my-5 text-center">
-      <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5 d-flex align-items-center justify-content-center">
+    <div class="container my-5 text-center search-section">
+      <div class="position-relative p-5 text-center text-muted rounded-5 d-flex align-items-center justify-content-center">
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
@@ -29,7 +32,7 @@
     {% if searched or sorted %}
       {% if results %}
       <!-- Search Results -->
-      <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5">
+      <div class="modal-sheet position-static d-block bg-body-secondary p-4">
         <div class="container px-4 py-5" id="custom-cards">
             <h2 class="pb-2 border-bottom">Results</h2>
             <!-- Display the response data here -->
@@ -42,7 +45,7 @@
                   <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
 
                     <!-- Station Title -->
-                    <h3 class="mb-4 display-6 lh-1 fw-bold">{{ result.name }}</h3>
+                    <h3 class="mb-4 display-6 lh-1 fw-bold">{{ result.name|truncatechars:30 }}</h3>
 
                     <!-- Audio Player -->
                     <div id="audio-player-container">
@@ -78,7 +81,7 @@
           {% endfor %}
 
           <!-- Pagination -->
-          <div class="pagination d-flex align-items-center justify-content-center m-auto p-5">
+          <div class="pagination d-flex align-items-center justify-content-center m-auto pt-5">
             <span class="step-links">
                 {% if results.has_previous %}
                     {% if searched %}
@@ -110,10 +113,9 @@
             </div>
         </div>
       </div>
-      {% else %}
-
-
+      
       <!-- No Results -->
+      {% else %}
       <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
         <div class="modal-dialog m-auto" role="document">
           <div class="modal-content rounded-4 shadow">
@@ -131,41 +133,58 @@
 
 
     <!-- Countries -->
-    <div class="modal-sheet position-static d-block bg-body-secondary h-100">
-        <div class="row">
-          <div class="col-6 col-md-4 my-5 category-buttons">
+    <div class="modal-sheet position-static d-block bg-body-secondary">
+      <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">Countries</h2>
+        <div class="row container-fluid h-100">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=US">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>USA</h3></div>
             </a>
           </div>
-          <div class="col-6 col-md-4 my-5 category-buttons">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=UK">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>UK</h3></div>
             </a>
           </div>
-          <div class="col-6 col-md-4 my-5 category-buttons">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=IE">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Ireland</h3></div>
             </a>
           </div>
-          <div class="col-6 col-md-4 my-5 category-buttons">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=DE">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Germany</h3></div>
             </a>
           </div>
-          <div class="col-6 col-md-4 my-5 category-buttons">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=FR">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>France</h3></div>
             </a>
           </div>
-          <div class="col-6 col-md-4 my-5 category-buttons">
+          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=AU">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Australia</h3></div>
             </a>
           </div>
         </div>
     </div>
+  </div>
 
+<!-- Footer -->
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+    <div class="col-md-4 d-flex align-items-center">
+      <span class="mb-3 mb-md-0 text-body-secondary">2024 EOSULL</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://github.com/eosull"><i class="bi bi-github"></i></a></li>
+      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://www.linkedin.com/in/eoin-o-sullivan-ab262b180/"><i class="bi bi-linkedin"></i></a></li>
+      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
+    </ul>
+  </footer>
+</div>
 
 </body>
 <script src="{% static 'js/script.js' %}"></script>
