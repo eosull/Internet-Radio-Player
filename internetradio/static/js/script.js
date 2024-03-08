@@ -12,6 +12,14 @@ const hidePlaybackBar = document.querySelector('#hide-playback')
 const showPlaybackBar = document.querySelector('#show-playback')
 const playBackBarButton = document.querySelectorAll('.pb-bar-button')
 
+const buttons = document.querySelectorAll('button');
+// Listening for each button and calling button filter function if pressed
+buttons.forEach(function(button) {
+  button.addEventListener('click', function() {
+      filterButtonPress(button);
+  });
+});
+
 // Default button state is play
 let state = 'paused';
 
@@ -21,29 +29,56 @@ function pauseCurrentStream() {
     if (!stream.paused) {
       stream.pause();
       // Replacing play icon and hiding pause
-      console.log(stream.nextSibling);
-      // stream.nextSibling.classList.replace('d-none', 'd-block');
-      // stream.nextSibling.nextSibling.classList.replace('d-block', 'd-none');
+      changeStreamControls(stream.nextElementSibling.nextElementSibling, 'pause')
     }
   }
 }
 
+function changeStreamControls(button, action) {
+  if (action == 'play'){
+    // Hide play button and display pause icon (next element)
+    button.classList.add('d-none');
+    button.nextElementSibling.classList.replace('d-none', 'd-block')
+  }
+  else {
+    // Hide pause button and display play icon (previous element)
+    button.classList.replace('d-block', 'd-none')
+    button.previousElementSibling.classList.replace('d-none', 'd-block')
+  }
+}
 
+function filterButtonPress(button) {
+  // Filter play and pause button presses
+  if (button.id.includes('play-icon')){
+    playStream(button)
+  }
+  else if (button.id.includes('pause-icon')){
+    // Do pause stuff
+    pauseStream(button);
+  }
+}
 
-// Loop through all play buttons listening for clicks
-for (const playButton of playButtons) {
-  playButton.addEventListener('click', () => {
-    if(state === 'paused') {
-      pauseCurrentStream();
-      // Selecting new audio element using custom ID format & playing
-      let audioId = playButton.getAttribute('id').replace('play-icon', 'audio');
-      audio = document.querySelector('#' + CSS.escape(audioId));
-      audio.play()
+function playStream(button) {
+  // Pause Currently running stream
+  pauseCurrentStream();
+  // Get audio id from custom button id and play stream
+  let audioId = button.getAttribute('id').replace('play-icon', 'audio');
+  let audio = document.querySelector('#' + CSS.escape(audioId));
+  audio.play();
+  changeStreamControls(button, 'play');
+}
+
+function pauseStream(button) {
+  // Pause Currently Playing stream
+  pauseCurrentStream();
+  changeStreamControls(button, 'pause');
+}
+
 
       // Getting station name and sending to playback bar
-      let stationNameId = playButton.getAttribute('id').replace('play-icon', 'station-name');
-      let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
-      document.querySelector('.station-title').innerHTML = stationName;
+      // let stationNameId = playButton.getAttribute('id').replace('play-icon', 'station-name');
+      // let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
+      // document.querySelector('.station-title').innerHTML = stationName;
 
       // Listening for click in playback bar
       // document.querySelector('#playback-bar-play-icon').addEventListener('click', () => {
@@ -51,37 +86,21 @@ for (const playButton of playButtons) {
       // });
 
       // Swapping Play button to pause
-      playButton.classList.add('d-none')
-      playbackBar.classList.replace('d-none', 'd-block')
-      playButton.nextElementSibling.classList.replace('d-none', 'd-block')
-      state = 'playing';
-    } else {
-      state = 'paused';
-    }
-  });
-}
+      // playButton.classList.add('d-none')
+      // playbackBar.classList.replace('d-none', 'd-block')
+      // playButton.nextElementSibling.classList.replace('d-none', 'd-block')
+
 
 // Loop through all pause buttons listening for clicks
-for (const pauseButton of pauseButtons) {
-  pauseButton.addEventListener('click', () => {
-    if(state === 'pause') {
-      pauseCurrentStream();
+
       // Selecting audio element using custom ID format
-      let audioId = pauseButton.getAttribute('id').replace('pause-icon', 'audio');
-      let audio = document.querySelector('#' + CSS.escape(audioId));
-      audio.pause()
       // Listening for pause click in playback bar
       // document.querySelector('#playback-bar-pause-icon').addEventListener('click', () => {
       //   audio.pause();
       // });
-      pauseButton.classList.replace('d-block', 'd-none')
-      pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
-      state = 'play';
-    } else {
-      state = 'pause';
-    }
-  });
-}
+      // pauseButton.classList.replace('d-block', 'd-none')
+      // pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
+
 
 hidePlaybackBar.addEventListener('click', () => {
   playbackBar.classList.add('playback-footer-hidden');
