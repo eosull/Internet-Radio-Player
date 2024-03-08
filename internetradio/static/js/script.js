@@ -8,11 +8,13 @@ const pauseButtons = document.querySelectorAll('.audio-pause');
 
 const playbackBar = document.querySelector('.playback-footer')
 const playbackBarHidden = document.querySelector('.playback-footer-hidden')
-const hidePlaybackBar = document.querySelector('#hide-playback')
-const showPlaybackBar = document.querySelector('#show-playback')
+const hidePlayback = document.querySelector('#hide-playback')
+const showPlayback = document.querySelector('#show-playback')
 const playBackBarButton = document.querySelectorAll('.pb-bar-button')
 
 const buttons = document.querySelectorAll('button');
+
+
 // Listening for each button and calling button filter function if pressed
 buttons.forEach(function(button) {
   button.addEventListener('click', function() {
@@ -50,22 +52,33 @@ function changeStreamControls(button, action) {
 function filterButtonPress(button) {
   // Filter play and pause button presses
   if (button.id.includes('play-icon')){
-    playStream(button)
+    playStream(button);
   }
   else if (button.id.includes('pause-icon')){
-    // Do pause stuff
     pauseStream(button);
+  }
+  else if (button.id == 'hide-playback') {
+    hidePlaybackBar();
+  }
+  else if (button.id == 'show-playback') {
+    showPlaybackBar();
   }
 }
 
 function playStream(button) {
+  
   // Pause Currently running stream
   pauseCurrentStream();
-  // Get audio id from custom button id and play stream
+  // Get audio id from custom button id
   let audioId = button.getAttribute('id').replace('play-icon', 'audio');
   let audio = document.querySelector('#' + CSS.escape(audioId));
   audio.play();
   changeStreamControls(button, 'play');
+  // Get stream details and trigger playback bar
+  let stationNameId = button.getAttribute('id').replace('play-icon', 'station-name');
+  let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
+  document.querySelector('.station-title').innerHTML = stationName;
+  showPlaybackBar();
 }
 
 function pauseStream(button) {
@@ -74,16 +87,24 @@ function pauseStream(button) {
   changeStreamControls(button, 'pause');
 }
 
+function showPlaybackBar() {
+  playbackBar.classList.remove('playback-footer-hidden', 'd-none');
+  hidePlayback.classList.replace('d-none', 'd-block');
+  showPlayback.classList.replace('d-block', 'd-none');
+  for (var i = 0; i < playBackBarButton.length; ++i) {
+    playBackBarButton[i].classList.replace('d-none', 'd-block');
+ };
+}
 
-      // Getting station name and sending to playback bar
-      // let stationNameId = playButton.getAttribute('id').replace('play-icon', 'station-name');
-      // let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
-      // document.querySelector('.station-title').innerHTML = stationName;
+function hidePlaybackBar() {
+  playbackBar.classList.add('playback-footer-hidden');
+  hidePlayback.classList.replace('d-block', 'd-none');
+  showPlayback.classList.replace('d-none', 'd-block');
+  for (var i = 0; i < playBackBarButton.length; ++i) {
+    playBackBarButton[i].classList.add('d-none');
+ }
+}     
 
-      // Listening for click in playback bar
-      // document.querySelector('#playback-bar-play-icon').addEventListener('click', () => {
-      //   audio.play()
-      // });
 
       // Swapping Play button to pause
       // playButton.classList.add('d-none')
@@ -102,21 +123,3 @@ function pauseStream(button) {
       // pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
 
 
-hidePlaybackBar.addEventListener('click', () => {
-  playbackBar.classList.add('playback-footer-hidden');
-  hidePlaybackBar.classList.replace('d-block', 'd-none');
-  showPlaybackBar.classList.replace('d-none', 'd-block');
-  for (var i = 0; i < playBackBarButton.length; ++i) {
-    playBackBarButton[i].classList.add('d-none');
-    console.log(playBackBarButton[i]);
- }
-});
-
-showPlaybackBar.addEventListener('click', () => {
-  playbackBar.classList.remove('playback-footer-hidden');
-  hidePlaybackBar.classList.replace('d-none', 'd-block');
-  showPlaybackBar.classList.replace('d-block', 'd-none');
-  for (var i = 0; i < playBackBarButton.length; ++i) {
-    playBackBarButton[i].classList.replace('d-none', 'd-block');
- };
-});
