@@ -63,7 +63,7 @@ h1, h2 {
 /* Audio player styling */
 .audio-player-button {
     background-color: none;
-    border: none;
+    border-radius: 25px;
 }
 
 /* Modal Styling */

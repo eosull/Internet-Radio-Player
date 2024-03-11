@@ -44,6 +44,9 @@ function changeStreamControls(button, action) {
       control.classList.add('d-none');
       control.nextElementSibling.classList.replace('d-none', 'd-block');
     })
+    // And on playback bar
+    document.querySelector('.pb-bar-play').classList.add('d-none');
+    document.querySelector('.pb-bar-play').nextElementSibling.classList.replace('d-none', 'd-block');
   }
   else {
     // Hide pause button and display play icon based on ids
@@ -100,34 +103,14 @@ function showPlaybackBar(buttonId) {
   hidePlayback.classList.replace('d-none', 'd-block');
   showPlayback.classList.replace('d-block', 'd-none');
   // Adding Play/pause ids to link buttons
-  document.querySelector('.pb-bar-play').id = buttonId;
-  document.querySelector('.pb-bar-pause').id = buttonId.replace('play-icon', 'pause-icon');
+  if (buttonId) {
+    document.querySelector('.pb-bar-play').id = buttonId;
+    document.querySelector('.pb-bar-pause').id = buttonId.replace('play-icon', 'pause-icon');
+  }
 }
 
 function hidePlaybackBar() {
   playbackBar.classList.add('playback-footer-hidden');
   hidePlayback.classList.replace('d-block', 'd-none');
   showPlayback.classList.replace('d-none', 'd-block');
-  for (var i = 0; i < playBackBarButton.length; ++i) {
-    playBackBarButton[i].classList.add('d-none');
- }
 }     
-
-
-      // Swapping Play button to pause
-      // playButton.classList.add('d-none')
-      // playbackBar.classList.replace('d-none', 'd-block')
-      // playButton.nextElementSibling.classList.replace('d-none', 'd-block')
-
-
-// Loop through all pause buttons listening for clicks
-
-      // Selecting audio element using custom ID format
-      // Listening for pause click in playback bar
-      // document.querySelector('#playback-bar-pause-icon').addEventListener('click', () => {
-      //   audio.pause();
-      // });
-      // pauseButton.classList.replace('d-block', 'd-none')
-      // pauseButton.previousElementSibling.classList.replace('d-none', 'd-block')
-
-
