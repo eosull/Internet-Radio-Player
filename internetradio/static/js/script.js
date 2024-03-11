@@ -38,14 +38,20 @@ function pauseCurrentStream() {
 
 function changeStreamControls(button, action) {
   if (action == 'play'){
-    // Hide play button and display pause icon (next element)
-    button.classList.add('d-none');
-    button.nextElementSibling.classList.replace('d-none', 'd-block')
+    // Hide play button and display pause icon based on ids
+    let buttonsToChange = document.querySelectorAll('#' + CSS.escape(button.id))
+    buttonsToChange.forEach(function(control) {
+      control.classList.add('d-none');
+      control.nextElementSibling.classList.replace('d-none', 'd-block');
+    })
   }
   else {
-    // Hide pause button and display play icon (previous element)
-    button.classList.replace('d-block', 'd-none')
-    button.previousElementSibling.classList.replace('d-none', 'd-block')
+    // Hide pause button and display play icon based on ids
+    let buttonsToChange = document.querySelectorAll('#' + CSS.escape(button.id))
+    buttonsToChange.forEach(function(control) {
+      control.classList.replace('d-block', 'd-none')
+      control.previousElementSibling.classList.replace('d-none', 'd-block');
+    })
   }
 }
 
@@ -66,7 +72,6 @@ function filterButtonPress(button) {
 }
 
 function playStream(button) {
-  
   // Pause Currently running stream
   pauseCurrentStream();
   // Get audio id from custom button id
@@ -75,10 +80,11 @@ function playStream(button) {
   audio.play();
   changeStreamControls(button, 'play');
   // Get stream details and trigger playback bar
-  let stationNameId = button.getAttribute('id').replace('play-icon', 'station-name');
+  let buttonId = button.getAttribute('id');
+  let stationNameId = buttonId.replace('play-icon', 'station-name');
   let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
   document.querySelector('.station-title').innerHTML = stationName;
-  showPlaybackBar();
+  showPlaybackBar(buttonId);
 }
 
 function pauseStream(button) {
@@ -87,13 +93,15 @@ function pauseStream(button) {
   changeStreamControls(button, 'pause');
 }
 
-function showPlaybackBar() {
+function showPlaybackBar(buttonId) {
+  // Display Playback bar
   playbackBar.classList.remove('playback-footer-hidden', 'd-none');
+  // Playback bar controls
   hidePlayback.classList.replace('d-none', 'd-block');
   showPlayback.classList.replace('d-block', 'd-none');
-  for (var i = 0; i < playBackBarButton.length; ++i) {
-    playBackBarButton[i].classList.replace('d-none', 'd-block');
- };
+  // Adding Play/pause ids to link buttons
+  document.querySelector('.pb-bar-play').id = buttonId;
+  document.querySelector('.pb-bar-pause').id = buttonId.replace('play-icon', 'pause-icon');
 }
 
 function hidePlaybackBar() {

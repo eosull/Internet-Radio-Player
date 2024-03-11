@@ -143,7 +143,7 @@
             </a>
           </div>
           <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=UK">
+            <a href="{% url 'index' %}?country=GB">
               <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>UK</h3></div>
             </a>
           </div>
@@ -192,8 +192,8 @@
       <button class="fs-2 d-none btn btn-primary text-bg-dark m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
       <div class="playback-bar-audio-player w-100">
         <h3 class="station-title">Station Name</h3>
-        <button id="playback-bar-play-icon" class="audio-player-button pb-bar-button audio-play text-bg-dark"><i class="bi bi-play-fill fs-2"></i></button>
-        <button id="playback-bar-pause-icon" class="audio-player-button pb-bar-button audio-pause text-bg-dark"><i class="bi bi-pause-fill fs-2"></i></button>
+        <button class="audio-player-button pb-bar-play pb-bar-button audio-play text-bg-dark d-none"><i class="bi bi-play-fill fs-2"></i></button>
+        <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause text-bg-dark d-block"><i class="bi bi-pause-fill fs-2"></i></button>
       </div>
     </div>
 </div>
