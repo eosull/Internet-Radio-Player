@@ -16,3 +16,4 @@ https://css-tricks.com/lets-create-a-custom-audio-player/#aa-display-the-audio-d
 - Add front end interface to make API requests
 - Display responses on the site
 - Style site (search, audio player etc.)
+- Add solution for non-functioning streams
