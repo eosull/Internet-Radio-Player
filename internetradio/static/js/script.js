@@ -12,9 +12,13 @@ const hidePlayback = document.querySelector('#hide-playback')
 const showPlayback = document.querySelector('#show-playback')
 const playBackBarButton = document.querySelectorAll('.pb-bar-button')
 
+// Web Audio API initialisation (for audio animation)
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
+const analyser = audioContext.createAnalyser();
+
+// Array of all buttons on site
 const buttons = document.querySelectorAll('button');
-
-
 // Listening for each button and calling button filter function if pressed
 buttons.forEach(function(button) {
   button.addEventListener('click', function() {
@@ -113,4 +117,4 @@ function hidePlaybackBar() {
   playbackBar.classList.add('playback-footer-hidden');
   hidePlayback.classList.replace('d-block', 'd-none');
   showPlayback.classList.replace('d-none', 'd-block');
-}     
+}   

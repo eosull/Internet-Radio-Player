@@ -85,7 +85,6 @@ h1, h2 {
 }
 
 /* Playback bar */
-
 .playback-footer {
     position:fixed;
     bottom:0;
@@ -103,4 +102,13 @@ h1, h2 {
 
 .playback-footer-hidden {
     height: 7.5vh;
+}
+
+.temp-playback-bar {
+    border: none;
+    border-top: 3px #999;
+    color: #999;
+    background-color: #fff;
+    height: 20px;
+    margin: 20px 0;
 }

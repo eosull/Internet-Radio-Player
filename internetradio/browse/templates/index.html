@@ -186,18 +186,20 @@
   </footer>
 </div>
 
-<div class="playback-footer d-none">
-    <div class="col-md-4 d-flex align-items-stretch w-100">
-      <div class="playback-bar-audio-player w-100 d-inline float-start">
+<div class="row m-0 playback-footer d-none">
+    <div class="col-md-4 d-flex align-items-evenly w-100">
+      <div class="playback-bar-audio-player d-inline float-start">
         <button class="audio-player-button pb-bar-play pb-bar-button audio-play text-bg-dark d-none"><i class="bi bi-play-fill fs-2"></i></button>
         <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause text-bg-dark d-block"><i class="bi bi-pause-fill fs-2"></i></button>
       </div>
-      <h3 class="station-title mx-auto">Station Name</h3>
+      <div class="d-inline flex-fill text-center">
+        <h3 class="station-title mx-auto">Station Name</h3>
+        <hr class="temp-playback-bar">
+      </div>
       <div class="d-inline float-end">
         <button class="fs-2 d-block btn btn-primary text-bg-dark m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
         <button class="fs-2 d-none btn btn-primary text-bg-dark m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
       </div>
-      <hr>
       </div>
 </div>
 
