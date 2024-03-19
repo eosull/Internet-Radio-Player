@@ -1,7 +1,7 @@
 ---
-name: 'USER STORY:'
+name: 'User Story'
 about: User Story Template for Internet Radio Site
-title: ''
+title: 'USER STORY:'
 labels: User Story
 assignees: ''
 
