@@ -1,19 +1,36 @@
 # Internet-Radio-Player
-Internet Radio Site to play radio stations from around the world
+This is my Internet Radio Site built to discover and listen to radio stations from around the world!
 
-Built using radio-browser API available:
-https://api.radio-browser.info/
-https://www.radio-browser.info/faq
+## Table of Contents
+- [About](#about)
+- [Agile](#agile-implementation)
+- [Features](#features)
+- [Deployment](#deployment)
+- [Technology](#technology)
+- [Credits](#credits)
 
-Pyradios library for communicating with radio-browser API:
-https://pypi.org/project/pyradios/
+## About 
+I love listening to the radio, hearing different voices, new music and discovering new things. This site is designed to combine this, allowing users to find their favourite stations as well as explore sites from all around the world!
 
-Custom Play/Pause Function:
-https://css-tricks.com/lets-create-a-custom-audio-player/#aa-display-the-audio-duration
+The backend of the site relies on the fantastic [Radio Browser API](https://api.radio-browser.info/), which is a great resource for searching and getting more info on radio stations. The [Pyradios Library](https://pypi.org/project/pyradios/) is used in order to communicate with this API more conveniently!
 
-- First step, figure out internet radio API and learn how to make requests to and from the server.
-- Create Django project and add in required libraries
-- Add front end interface to make API requests
-- Display responses on the site
-- Style site (search, audio player etc.)
-- Add solution for non-functioning streams
+## Agile 
+
+**MVP**: Intuitive radio player that allows search, sort and discovery of radio stations.
+
+Agile processes managed using GitHub projects, this can be seen [here](https://github.com/users/eosull/projects/9).
+
+## Features
+- Search Bar
+- Sorting Options
+- Playback Bar
+- Discovery Feature (TBC)
+
+## Deployment
+
+## Technology
+- [Radio Browser API](https://api.radio-browser.info/)
+- [Pyradios Library](https://pypi.org/project/pyradios/)
+
+## Credits
+- [Custom Play/Pause Function](https://css-tricks.com/lets-create-a-custom-audio-player/#aa-display-the-audio-duration)
