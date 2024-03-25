@@ -1,5 +1,5 @@
 ---
-name: 'User Story'
+name: User Story
 about: User Story Template for Internet Radio Site
 title: 'USER STORY:'
 labels: User Story
