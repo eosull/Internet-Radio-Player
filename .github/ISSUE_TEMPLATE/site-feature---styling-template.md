@@ -9,7 +9,7 @@ assignees: ''
 
 Epic: #
 
-Enhancing the ##functionality## of the site in order for the user to ##action##, the ##feature## needs to be ##description##
+Enhancing the **functionality** of the site in order for the user to **action**, the **feature** needs to be **description**
 
 Tasks:
 - [ ]
