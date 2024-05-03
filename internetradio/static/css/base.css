@@ -3,6 +3,8 @@
 /* Colour variables */
 :root {
     --white: #ffffff;
+    --white-hover: #e5e3e3;
+    --black: #000000;
     --light-blue: #3f679f;
     --light-blue-hover: #284165;
     /* --orange-light: #f7763195;
@@ -12,7 +14,6 @@
 }
 body {
     height: 100vh;
-    font-family: "Quicksand", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
@@ -43,7 +44,6 @@ a {
 }
 
 h1, h2 {
-    font-family: "Micro 5", sans-serif;
     font-weight: 400;
     letter-spacing: 5px;
     font-style: normal;
@@ -51,14 +51,24 @@ h1, h2 {
 
 /* Result card styling */
 .card-img-top {
-    object-fit: cover;
+    height: 66%;
+}
+
+.card-img-overlay .audio-player-button {
+    position: relative;
+    top: 33%
+    
 }
 
 /* Background textures */
 /* Patterns built using https://www.magicpattern.design/tools/css-backgrounds */
 .result-card {
-    background-color: var(--white);
-    width: 100%;
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    height: 100%;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
 }
 
 .country-card {
