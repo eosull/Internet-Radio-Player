@@ -32,9 +32,9 @@
     {% if searched or sorted %}
       {% if results %}
       <!-- Search Results -->
-      <div class="modal-sheet position-static d-block p-4">
+      <div class="modal-sheet position-static d-block">
         <div class="container px-4 py-5" id="custom-cards">
-            <h2 class="pb-2 border-bottom">Results</h2>
+            <h2 class="pb-2">Results</h2>
             <!-- Display the response data here -->
             <!-- Layout core from Bootstrap features examples -->
             <!-- https://getbootstrap.com/docs/5.3/examples/features/ -->
@@ -116,10 +116,10 @@
       
       <!-- No Results -->
       {% else %}
-      <div class="modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+      <div class="modal-sheet position-static d-block" tabindex="-1" role="dialog" id="modalSheet">
         <div class="modal-dialog m-auto" role="document">
           <div class="modal-content rounded-4 shadow">
-            <div class="modal-header border-bottom-0">
+            <div class="modal-header">
               <h2 class="modal-title fs-5">No results</h2>
             </div>
             <div class="modal-body py-0">
@@ -135,7 +135,7 @@
     <!-- Countries -->
     <div class="modal-sheet position-static d-block">
       <div class="container px-4 py-5" id="custom-cards">
-      <h2 class="pb-2 border-bottom">Countries</h2>
+      <h2 class="pb-2">Countries</h2>
         <div class="row container-fluid h-100">
           <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=US">
