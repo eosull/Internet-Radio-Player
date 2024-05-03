@@ -49,10 +49,16 @@ h1, h2 {
     font-style: normal;
 }
 
+/* Result card styling */
+.card-img-top {
+    object-fit: cover;
+}
+
 /* Background textures */
 /* Patterns built using https://www.magicpattern.design/tools/css-backgrounds */
 .result-card {
     background-color: var(--white);
+    width: 100%;
 }
 
 .country-card {
@@ -84,7 +90,6 @@ h1, h2 {
 .audio-player-button {
     background-color: var(--light-blue);
     color: var(--white);
-    width: 25%;
     border-radius: 25px;
     border-width: 0 ;
 }

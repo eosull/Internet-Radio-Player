@@ -40,32 +40,47 @@
             <!-- https://getbootstrap.com/docs/5.3/examples/features/ -->
             <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             {% for result in results %}
-              <div class="col">
-                <div class="result-card card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" id="search_result_card">
+            <div class="col">
+            <div class="result-card card card-cover shadow-lg" id="search_result_card">
+                {% if result.favicon %}
+                  <img src="{{ result.favicon }}" alt="radio station logo"class="card-img-top">
+                {% else %}
+                  <img src="https://cdn-icons-png.flaticon.com/512/7581/7581950.png" alt="default radio logo"class="card-img-top">
+                {% endif %}
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                  <div id="audio-player-container">
+                    <audio src="{{ result.url }}" id="{{ result.stationuuid }}audio">
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play"><i class="bi bi-play-fill fs-1"></i></button>
+                    <button id="{{ result.stationuuid }}pause-icon" class="audio-player-button audio-pause d-none"><i class="bi bi-pause-fill fs-1"></i></button>
+                  </div>
+                </div>
+            </div>
+              
+                <div class="result-card card card-cover h-100 overflow-hidden text-bg-dark shadow-lg" id="search_result_card">
                   <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-
                     <!-- Station Title -->
                     <h3 class="mb-4 display-6 lh-1 fw-bold" id="{{ result.stationuuid }}station-name">{{ result.name|truncatechars:30 }}</h3>
-
                     <!-- Audio Player -->
-                    <div id="audio-player-container">
+                    <!-- <div id="audio-player-container">
                       <audio src="{{ result.url }}" id="{{ result.stationuuid }}audio">
                         Your browser does not support the audio element.
                       </audio>
                       <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play"><i class="bi bi-play-fill fs-1"></i></button>
                       <button id="{{ result.stationuuid }}pause-icon" class="audio-player-button audio-pause d-none"><i class="bi bi-pause-fill fs-1"></i></button>
-                    </div>
+                    </div> -->
                     
                     <!-- Station Logo -->
                     <ul class="d-flex list-unstyled mt-auto">
-                      <li class="me-auto">
+                      <!-- <li class="me-auto">
                         {% if result.favicon %}
                             <img src="{{ result.favicon }}" alt="radio station logo" width="32" height="32" class="rounded-circle border border-white">
                         {% else %}
                             <img src="https://cdn-icons-png.flaticon.com/512/7581/7581950.png" alt="default radio logo" width="32" height="32" class="rounded-circle border border-white">
                         {% endif %}
                             
-                      </li>
+                      </li> -->
                       <li class="d-flex align-items-center me-3">
                         <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
                         <small>{{ result.countrycode }}</small>
