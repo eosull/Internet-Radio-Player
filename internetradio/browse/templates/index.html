@@ -20,10 +20,10 @@
     <!-- Search Box -->
     <div class="container my-5 text-center search-section">
       <div class="position-relative p-5 text-center text-muted rounded-5 d-flex align-items-center justify-content-center">
-        <form method="post">
+        <form method="post" class="search-form">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="btn btn-primary text-bg-dark"><i class="bi bi-search"></i> Search</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
       </form>
       </div>
     </div>
@@ -32,7 +32,7 @@
     {% if searched or sorted %}
       {% if results %}
       <!-- Search Results -->
-      <div class="modal-sheet position-static d-block bg-body-secondary p-4">
+      <div class="modal-sheet position-static d-block p-4">
         <div class="container px-4 py-5" id="custom-cards">
             <h2 class="pb-2 border-bottom">Results</h2>
             <!-- Display the response data here -->
@@ -52,8 +52,8 @@
                       <audio src="{{ result.url }}" id="{{ result.stationuuid }}audio">
                         Your browser does not support the audio element.
                       </audio>
-                      <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play text-bg-dark"><i class="bi bi-play-fill fs-1"></i></button>
-                      <button id="{{ result.stationuuid }}pause-icon" class="audio-player-button audio-pause text-bg-dark d-none"><i class="bi bi-pause-fill fs-1"></i></button>
+                      <button id="{{ result.stationuuid }}play-icon" class="audio-player-button audio-play"><i class="bi bi-play-fill fs-1"></i></button>
+                      <button id="{{ result.stationuuid }}pause-icon" class="audio-player-button audio-pause d-none"><i class="bi bi-pause-fill fs-1"></i></button>
                     </div>
                     
                     <!-- Station Logo -->
@@ -90,7 +90,7 @@
                     {% endif %}
                     {% if sorted %}
                     <a href="{{ request.get_full_path }}&page=1" class="d-inline nav-link">1</a>
-                    <a href="{{ request.get_full_path }}&page={{ results.previous_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-left-circle"></i></a>
+                    <a href="{{ request.get_full_path }}&page={{ results.previous_page_number }}" class="d-inline nav-link icon-primary fs-2"><i class="bi bi-arrow-left-circle"></i></a>
                     {% endif %}
                 {% endif %}
         
@@ -100,11 +100,11 @@
         
                 {% if results.has_next %}
                   {% if searched %}
-                  <a href="?page={{ results.next_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-right-circle"></i></a>
+                  <a href="?page={{ results.next_page_number }}" class="d-inline nav-link icon-primary fs-2"><i class="bi bi-arrow-right-circle"></i></a>
                   <a href="?page={{ results.paginator.num_pages }}" class="d-inline nav-link">{{ results.paginator.num_pages }}</a>
                   {% endif %}
                   {% if sorted %}
-                  <a href="{{ request.get_full_path }}&page={{ results.next_page_number }}" class="d-inline nav-link fs-2"><i class="bi bi-arrow-right-circle"></i></a>
+                  <a href="{{ request.get_full_path }}&page={{ results.next_page_number }}" class="d-inline nav-link icon-primary fs-2"><i class="bi bi-arrow-right-circle"></i></a>
                   <a href="{{ request.get_full_path }}&page={{ results.paginator.num_pages }}" class="d-inline nav-link">{{ results.paginator.num_pages }}</a>
                   {% endif %}
                 {% endif %}
@@ -116,7 +116,7 @@
       
       <!-- No Results -->
       {% else %}
-      <div class="modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+      <div class="modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
         <div class="modal-dialog m-auto" role="document">
           <div class="modal-content rounded-4 shadow">
             <div class="modal-header border-bottom-0">
@@ -133,7 +133,7 @@
 
 
     <!-- Countries -->
-    <div class="modal-sheet position-static d-block bg-body-secondary">
+    <div class="modal-sheet position-static d-block">
       <div class="container px-4 py-5" id="custom-cards">
       <h2 class="pb-2 border-bottom">Countries</h2>
         <div class="row container-fluid h-100">
@@ -179,9 +179,9 @@
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://github.com/eosull"><i class="bi bi-github"></i></a></li>
-      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://www.linkedin.com/in/eoin-o-sullivan-ab262b180/"><i class="bi bi-linkedin"></i></a></li>
-      <li class="ms-3 fs-3"><a class="text-body-secondary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
+      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://github.com/eosull"><i class="bi bi-github"></i></a></li>
+      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.linkedin.com/in/eoin-o-sullivan-ab262b180/"><i class="bi bi-linkedin"></i></a></li>
+      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
     </ul>
   </footer>
 </div>
@@ -189,16 +189,16 @@
 <div class="row m-0 playback-footer d-none">
     <div class="col-md-4 d-flex align-items-evenly w-100">
       <div class="playback-bar-audio-player d-inline float-start">
-        <button class="audio-player-button pb-bar-play pb-bar-button audio-play text-bg-dark d-none"><i class="bi bi-play-fill fs-2"></i></button>
-        <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause text-bg-dark d-block"><i class="bi bi-pause-fill fs-2"></i></button>
+        <button class="audio-player-button pb-bar-play pb-bar-button audio-play d-none"><i class="bi bi-play-fill fs-2"></i></button>
+        <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-block"><i class="bi bi-pause-fill fs-2"></i></button>
       </div>
       <div class="d-inline flex-fill text-center">
         <h3 class="station-title mx-auto">Station Name</h3>
         <hr class="temp-playback-bar">
       </div>
       <div class="d-inline float-end">
-        <button class="fs-2 d-block btn btn-primary text-bg-dark m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
-        <button class="fs-2 d-none btn btn-primary text-bg-dark m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
+        <button class="fs-2 d-block audio-player-button m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
+        <button class="fs-2 d-none audio-player-button m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
       </div>
       </div>
 </div>

@@ -1,5 +1,15 @@
 
 /* Site Styling */
+/* Colour variables */
+:root {
+    --white: #ffffff;
+    --light-blue: #3f679f;
+    --light-blue-hover: #284165;
+    /* --orange-light: #f7763195;
+    --grey: rgb(103, 103, 103);
+    --grey-light: rgba(0, 0, 0, 0.549);
+    --grey-dark: rgba(0, 0, 0, 0.828); */
+}
 body {
     height: 100vh;
     font-family: "Quicksand", sans-serif;
@@ -11,6 +21,21 @@ body {
 .btn-primary {
     border: none;
     text-decoration: none;
+    background-color: var(--light-blue);
+}
+
+.icon-primary {
+    border: none;
+    text-decoration: none;
+    color: var(--light-blue);
+}
+
+.btn-primary:hover{
+    background-color: var(--light-blue-hover);
+}
+
+.icon-primary:hover {
+    color: var(--light-blue-hover);
 }
 
 a {
@@ -27,43 +52,45 @@ h1, h2 {
 /* Background textures */
 /* Patterns built using https://www.magicpattern.design/tools/css-backgrounds */
 .result-card {
-    background-color: #94c1ff;
-    opacity: 1;
-    background-image:  linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077);
-    background-size: 74px 130px;
-    background-position: 0 0, 0 0, 37px 65px, 37px 65px, 0 0, 37px 65px;
+    background-color: var(--white);
 }
 
 .country-card {
-    background-color: #94c1ff;
-    opacity: 1;
-    background-image: radial-gradient(circle at center center, #000000, #94c1ff), repeating-radial-gradient(circle at center center, #000000, #000000, 37px, transparent 74px, transparent 37px);
-    background-blend-mode: multiply;
+    background-color: var(--white);
 }
 
 .search-banner {
-    background-color: #94c1ff;
-    opacity: 1;
-    background-image:  radial-gradient(#e5e5f78b 6px, transparent 6px), radial-gradient(#e5e5f78b 12px, #94c1ff 12px);
+    background-color: var(--white);
     background-size: 80px 80px;
     background-position: 0 0,40px 40px;
 }
 
 .search-section {
-    background-color: #94c1ff;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+    /* background-color: var(--light-blue); */
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px; */
+}
+
+.search-form p,
+.search-form button {
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px; */
 }
 
 .modal-sheet {
-    background-color: #94c1ff !important;
     min-height: 60vh;
 }
 
 /* Audio player styling */
+
 .audio-player-button {
-    background-color: none;
+    background-color: var(--light-blue);
+    color: var(--white);
+    width: 25%;
     border-radius: 25px;
+    border-width: 0 ;
+}
+
+.audio-player-button:hover {
+    background-color: var(--light-blue-hover);
 }
 
 /* Modal Styling */
