@@ -5,8 +5,8 @@ class SearchForm(forms.Form):
 
     search_term = forms.CharField(widget=forms.TextInput(
                                   attrs={
-                                    'placeholder': 'Station Name',
-                                    'style': 'width: 250px;',
+                                    'placeholder': 'What do you want to hear?',
+                                    'style': 'width: 300px;',
                                     'class': 'form-control text-center'
                                     }),
                                     label=''
