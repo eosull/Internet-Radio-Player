@@ -12,7 +12,7 @@ def index(request):
             searched = True
             rb = RadioBrowser()
             search_term = form.cleaned_data['search_term']
-            search_return = rb.search(name=search_term, hidebroken=True)
+            search_return = rb.search(name=search_term, tag=search_term, order="votes", hidebroken=True, name_exact=False)
             request.session['search_return'] = search_return
             paginator = Paginator(search_return, 12)
 
@@ -69,5 +69,5 @@ def index(request):
 
 def country_sort(term):
     rb = RadioBrowser()
-    search_return = rb.search(countrycode=term, hidebroken=True)
+    search_return = rb.search(countrycode=term, order="votes", hidebroken=True)
     return search_return
