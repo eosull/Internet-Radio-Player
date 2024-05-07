@@ -7,10 +7,7 @@
     --black: #000000;
     --light-blue: #3f679f;
     --light-blue-hover: #284165;
-    /* --orange-light: #f7763195;
-    --grey: rgb(103, 103, 103);
-    --grey-light: rgba(0, 0, 0, 0.549);
-    --grey-dark: rgba(0, 0, 0, 0.828); */
+    --light-blue-gradient: #06093b;
 }
 body {
     height: 100vh;
@@ -44,9 +41,32 @@ a {
 }
 
 h1, h2 {
+    color: var(--white);
     font-weight: 400;
     letter-spacing: 5px;
     font-style: normal;
+    z-index: 1;
+    position: relative;
+}
+
+/* Hero and Footer styling */
+.search-banner {
+    height: 30vh;
+}
+
+.hero-design {
+    background: linear-gradient(var(--light-blue-gradient), var(--light-blue-hover));
+    height: 65vh;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    overflow: visible;
+    position: relative;
+}
+
+.footer-design {
+    width: 100%;
+    height: 10vh;
+    overflow: visible;
+    position: relative;
 }
 
 /* Result card styling */
@@ -60,8 +80,6 @@ h1, h2 {
     
 }
 
-/* Background textures */
-/* Patterns built using https://www.magicpattern.design/tools/css-backgrounds */
 .result-card {
     background-color: var(--black);
     color: var(--white);
@@ -73,22 +91,6 @@ h1, h2 {
 
 .country-card {
     background-color: var(--white);
-}
-
-.search-banner {
-    background-color: var(--white);
-    background-size: 80px 80px;
-    background-position: 0 0,40px 40px;
-}
-
-.search-section {
-    /* background-color: var(--light-blue); */
-    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px; */
-}
-
-.search-form p,
-.search-form button {
-    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px; */
 }
 
 .modal-sheet {
@@ -124,6 +126,8 @@ h1, h2 {
 
 .country-card {
     box-shadow: rgba(255, 255, 255, 0.1) -4px 9px 25px -6px;
+    z-index: 1;
+    position: relative;
 }
 
 /* Playback bar */
@@ -154,3 +158,10 @@ h1, h2 {
     height: 20px;
     margin: 20px 0;
 }
+
+@media (width <= 1250px) {
+    .hero-design {
+        height: 90vh;
+    }
+    
+  }

@@ -13,20 +13,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <title>My Internet Radio</title>
 </head>
-<body class=" search-banner ">
-    <a href="{% url 'index' %}" class="text-black"><h1><i class="bi bi-broadcast fs-3"></i>-----MyRadio-----<i class="bi bi-broadcast fs-3"></i></h1></a>
-
-
+<body>
+<div class="search-banner mb-5">
+  <div class="hero-design">
+    <div class="container">
+      <a href="{% url 'index' %}" class="text-black"><h1>MyRadio</h1></a>
+    </div>
     <!-- Search Box -->
     <div class="container my-5 text-center search-section">
       <div class="position-relative p-5 text-center text-muted rounded-5 d-flex align-items-center justify-content-center">
         <form method="post" class="search-form">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-broadcast"></i> Search</button>
       </form>
       </div>
     </div>
+  </div>
+</div>
+
+  
         
 
     {% if searched or sorted %}
@@ -57,16 +63,6 @@
                   </div>
                 </div>
                 <h3 class="lh-1 my-auto fw-bold" id="{{ result.stationuuid }}station-name">{{ result.name|truncatechars:30}}</h3>
-                <!-- <ul class="d-flex list-unstyled mt-auto">
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
-                    <small>{{ result.countrycode }}</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
-                    <a href="{{ result.homepage }}" target="_blank"><small>Station link</small></a>
-                  </li>
-                </ul> -->
             </div>  
             </div>
           {% endfor %}
@@ -122,11 +118,9 @@
       {% endif %}
     {% endif %}
 
-
     <!-- Countries -->
     <div class="modal-sheet position-static d-block">
       <div class="container px-4 py-5" id="custom-cards">
-      <h2 class="pb-2">Countries</h2>
         <div class="row container-fluid h-100">
           <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
             <a href="{% url 'index' %}?country=US">
@@ -160,40 +154,38 @@
           </div>
         </div>
     </div>
-  </div>
-
-<!-- Footer -->
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
-    <div class="col-md-4 d-flex align-items-center">
-      <span class="mb-3 mb-md-0 text-body-secondary">2024 EOSULL</span>
     </div>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://github.com/eosull"><i class="bi bi-github"></i></a></li>
-      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.linkedin.com/in/eoin-o-sullivan-ab262b180/"><i class="bi bi-linkedin"></i></a></li>
-      <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
-    </ul>
-  </footer>
-</div>
+<!-- Footer -->
+    <div class="mx-0 footer-banner footer-design">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+        <div class="col-md-4 d-flex align-items-center">
+          <span class="mb-3 mb-md-0 text-body-secondary">2024 EOSULL</span>
+        </div>
 
-<div class="row m-0 playback-footer d-none">
-    <div class="col-md-4 d-flex align-items-evenly w-100">
-      <div class="playback-bar-audio-player d-inline float-start">
-        <button class="audio-player-button pb-bar-play pb-bar-button audio-play d-none"><i class="bi bi-play-fill fs-2"></i></button>
-        <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-block"><i class="bi bi-pause-fill fs-2"></i></button>
-      </div>
-      <div class="d-inline flex-fill text-center">
-        <h3 class="station-title mx-auto">Station Name</h3>
-        <hr class="temp-playback-bar">
-      </div>
-      <div class="d-inline float-end">
-        <button class="fs-2 d-block audio-player-button m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
-        <button class="fs-2 d-none audio-player-button m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
-      </div>
-      </div>
-</div>
-
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://github.com/eosull"><i class="bi bi-github"></i></a></li>
+          <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.linkedin.com/in/eoin-o-sullivan-ab262b180/"><i class="bi bi-linkedin"></i></a></li>
+          <li class="ms-3 fs-3"><a class="icon-primary" target="_blank" href="https://www.eosull.xyz/"><i class="bi bi-hand-index-thumb"></i></a></li>
+        </ul>
+      </footer>
+    </div>
+    <div class="row m-0 playback-footer d-none">
+        <div class="col-md-4 d-flex align-items-evenly w-100">
+          <div class="playback-bar-audio-player d-inline float-start">
+            <button class="audio-player-button pb-bar-play pb-bar-button audio-play d-none"><i class="bi bi-play-fill fs-2"></i></button>
+            <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-block"><i class="bi bi-pause-fill fs-2"></i></button>
+          </div>
+          <div class="d-inline flex-fill text-center">
+            <h3 class="station-title mx-auto">Station Name</h3>
+            <hr class="temp-playback-bar">
+          </div>
+          <div class="d-inline float-end">
+            <button class="fs-2 d-block audio-player-button m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
+            <button class="fs-2 d-none audio-player-button m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
+          </div>
+          </div>
+    </div>
 </body>
 <script src="{% static 'js/script.js' %}"></script>
 </html>
