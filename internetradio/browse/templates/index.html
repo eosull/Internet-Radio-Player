@@ -122,36 +122,13 @@
     <div class="modal-sheet position-static d-block">
       <div class="container px-4 py-5" id="custom-cards">
         <div class="row container-fluid h-100">
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=US">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>USA</h3></div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=GB">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>UK</h3></div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=IE">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Ireland</h3></div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=DE">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Germany</h3></div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=FR">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>France</h3></div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
-            <a href="{% url 'index' %}?country=AU">
-              <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>Australia</h3></div>
-            </a>
-          </div>
+        {% for country in countries %}
+        <div class="col-12 col-sm-6 col-md-4 my-5 category-buttons">
+          <a href="{% url 'index' %}?country={{ country.country_code }}">
+            <div class="btn btn-primary text-bg-dark w-100 h-100 d-flex justify-content-center align-items-center country-card"><h3>{{ country.name }}</h3></div>
+          </a>
+        </div>
+        {% endfor %}
         </div>
     </div>
     </div>

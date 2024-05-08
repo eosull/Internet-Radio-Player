@@ -97,6 +97,11 @@ h1, h2 {
     min-height: 60vh;
 }
 
+.country-test-text {
+    color: var(--white);
+    background-color: var(--light-blue-gradient);
+}
+
 /* Audio player styling */
 
 .audio-player-button {

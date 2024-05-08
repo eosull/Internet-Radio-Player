@@ -5,7 +5,10 @@ from .forms import SearchForm
 
 from pyradios import RadioBrowser
 
+import random
+
 def index(request):
+
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -65,11 +68,24 @@ def index(request):
                 context.update({'searched': searched})
 
         form = SearchForm()
-        context.update({'form': form})
+        context.update({'form': form, 'countries': get_countries()})
         return render(request, 'index.html', context)
         print(request.session['search_return'])
+    
 
 def country_sort(term):
     rb = RadioBrowser()
     search_return = rb.search(countrycode=term, order="votes", hidebroken=True)
     return search_return
+
+def get_countries():
+    rb = RadioBrowser()
+    all_countries = rb.countries()
+    random_countries = []
+    while len(random_countries) <= 5:
+        selection = random.randint(0, len(all_countries))
+        random_countries.append({
+            'name': all_countries[selection]['name'],
+            'country_code': all_countries[selection]['iso_3166_1']
+        })
+    return random_countries
