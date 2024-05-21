@@ -71,8 +71,14 @@ function filterButtonPress(button) {
   else if (button.id == 'hide-playback') {
     hidePlaybackBar();
   }
+  else if (button.id == 'hide-rand-playback') {
+    hideRandPlaybackBar();
+  }
   else if (button.id == 'show-playback') {
     showPlaybackBar();
+  }
+  else if (button.id == 'show-rand-playback') {
+    showRandPlaybackBar();
   }
 }
 
@@ -111,8 +117,27 @@ function showPlaybackBar(buttonId) {
   }
 }
 
+function showRandPlaybackBar(buttonId) {
+  // Display Playback bar
+  document.querySelector('#rand-playback-footer').classList.remove('playback-footer-hidden', 'd-none');
+  // Playback bar controls
+  document.querySelector('#hide-rand-playback').classList.replace('d-none', 'd-block');
+  document.querySelector('#show-rand-playback').classList.replace('d-block', 'd-none');
+  // Adding Play/pause ids to link buttons
+  if (buttonId) {
+    document.querySelector('.pb-bar-play').id = buttonId;
+    document.querySelector('.pb-bar-pause').id = buttonId.replace('play-icon', 'pause-icon');
+  }
+}
+
 function hidePlaybackBar() {
   playbackBar.classList.add('playback-footer-hidden');
   hidePlayback.classList.replace('d-block', 'd-none');
   showPlayback.classList.replace('d-none', 'd-block');
 }   
+
+function hideRandPlaybackBar() {
+  document.querySelector('#rand-playback-footer').classList.add('playback-footer-hidden');
+  document.querySelector('#hide-rand-playback').classList.replace('d-block', 'd-none');
+  document.querySelector('#show-rand-playback').classList.replace('d-none', 'd-block');
+}

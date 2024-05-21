@@ -139,9 +139,11 @@ h1, h2 {
 .playback-footer {
     position:fixed;
     bottom:0;
+    z-index: 2;
     width: 100vw;
     height: 15vh;
-    background-color: rgba(255, 255, 255, 0.671);
+    background-color: var(--light-blue-gradient);
+    color: var(--white);
     transition: all 0.5s ease-out;
 }
 

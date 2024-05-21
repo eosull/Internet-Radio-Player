@@ -25,7 +25,8 @@
         <form method="post" class="search-form">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="btn btn-primary"><i class="bi bi-broadcast"></i> Search</button>
+          <button type="submit" class="btn d-inline btn-primary p-2"><i class="bi bi-broadcast"></i> Search</button>
+          <a href="{% url 'index' %}?random"><button type="button" class="btn d-inline btn-primary p-2"><i class="bi bi-speaker"></i>Random Station</button></a>
       </form>
       </div>
     </div>
@@ -147,6 +148,8 @@
         </ul>
       </footer>
     </div>
+
+    <!-- Playback Bar -->
     <div class="row m-0 playback-footer d-none">
         <div class="col-md-4 d-flex align-items-evenly w-100">
           <div class="playback-bar-audio-player d-inline float-start">
@@ -163,6 +166,29 @@
           </div>
           </div>
     </div>
+
+    <!-- Random Station Playback Bar -->
+    {% if random_station %}
+    <div id="rand-playback-footer" class="row m-0 playback-footer d-block">
+      <div class="col-md-4 d-flex align-items-evenly w-100">
+        <div class="playback-bar-audio-player d-inline float-start">
+          <audio src="{{ random_station.url }}" id="{{ random_station.stationuuid }}audio">
+            Your browser does not support the audio element.
+          </audio>
+          <button id="{{ random_station.stationuuid }}play-icon" class="audio-player-button pb-bar-play pb-bar-button audio-play d-block"><i class="bi bi-play-fill fs-2"></i></button>
+          <button id="{{ random_station.stationuuid }}pause-icon" class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-none"><i class="bi bi-pause-fill fs-2"></i></button>
+        </div>
+        <div class="d-inline flex-fill text-center">
+          <h3 class="station-title mx-auto">{{random_station.name}}</h3>
+          <hr class="temp-playback-bar">
+        </div>
+        <div class="d-inline float-end">
+          <button class="fs-2 d-block audio-player-button m-auto" id="hide-rand-playback"><i class="bi bi-arrow-down-short"></i></button>
+          <button class="fs-2 d-none audio-player-button m-auto" id="show-rand-playback"><i class="bi bi-arrow-up-short"></i></button>
+        </div>
+        </div>
+  </div>
+    {% endif %}
 </body>
 <script src="{% static 'js/script.js' %}"></script>
 </html>

@@ -57,18 +57,24 @@ def index(request):
             sorted = True
             context.update({'sorted': sorted})
 
-        else:
-            if 'page' in request.GET:
-                paginator = Paginator(request.session['search_return'], 12)
-                page_number = request.GET.get('page')
-                results = paginator.get_page(page_number)
-                context.update({'results': results})
-                sorted = False
-                searched = True
-                context.update({'searched': searched})
+        if 'page' in request.GET:
+            paginator = Paginator(request.session['search_return'], 12)
+            page_number = request.GET.get('page')
+            results = paginator.get_page(page_number)
+            context.update({'results': results})
+            sorted = False
+            searched = True
+            context.update({'searched': searched})
+        
+        if 'random' in request.GET:
+            print("FINDING RANDOM STATION")
+            context.update({'random_station': get_random_station()})
 
         form = SearchForm()
-        context.update({'form': form, 'countries': get_countries()})
+        context.update({
+            'form': form,
+            'countries': get_countries()
+            })
         return render(request, 'index.html', context)
         print(request.session['search_return'])
     
@@ -76,6 +82,11 @@ def index(request):
 def country_sort(term):
     rb = RadioBrowser()
     search_return = rb.search(countrycode=term, order="votes", hidebroken=True)
+    return search_return
+
+def genre_sort(term):
+    reb = RadioBrowser()
+    search_return = rb.search(tag=term, order="votes", hidebroken=True)
     return search_return
 
 def get_countries():
@@ -89,3 +100,9 @@ def get_countries():
             'country_code': all_countries[selection]['iso_3166_1']
         })
     return random_countries
+
+def get_random_station():
+    rb = RadioBrowser()
+    all_stations = rb.stations_by_name(name="")
+    selection = random.randint(0, len(all_stations))
+    return all_stations[selection]
