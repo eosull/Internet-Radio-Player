@@ -32,11 +32,9 @@ let state = 'paused';
 function pauseCurrentStream() {
   // Run through audio elements to check if any are playing and pause the stream
   for (const stream of document.querySelectorAll('audio')) {
-    if (!stream.paused) {
       stream.pause();
       // Replacing play icon and hiding pause
-      changeStreamControls(stream.nextElementSibling.nextElementSibling, 'pause')
-    }
+      changeStreamControls(stream.nextElementSibling.nextElementSibling, 'pause');
   }
 }
 
