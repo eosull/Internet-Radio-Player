@@ -6,6 +6,8 @@ from .forms import SearchForm
 from pyradios import RadioBrowser
 
 import random
+from operator import itemgetter
+
 
 def index(request):
 
@@ -15,26 +17,32 @@ def index(request):
             searched = True
             rb = RadioBrowser()
             search_term = form.cleaned_data['search_term']
-            search_return = rb.search(name=search_term, tag=search_term,
-                                      order="votes", country=search_term,
-                                      hidebroken=True, name_exact=False)
+            search_return = rb.search(name=search_term, name_exact=False,
+                                      order="votes", reverse=True)
+            # Adding Genre search to list
+            search_return.append(rb.search(tag=search_term, order="votes",
+                                           reverse=True, hidebroken=True))
+            # Adding Country search to list
+            search_return.append(rb.search(country=search_term, order="votes",
+                                           reverse=True, hidebroken=True))
             request.session['search_return'] = search_return
             paginator = Paginator(search_return, 12)
-
             page_number = request.GET.get("page")
             results = paginator.get_page(page_number)         
 
             if not results:
                 context = {
                     'form': form,
-                    'searched': searched
+                    'searched': searched,
+                    'countries': get_countries()
                 }
                 return render(request, 'index.html', context)
             else:
                 context = {
                     'form': form,
                     'results': results,
-                    'searched': searched
+                    'searched': searched,
+                    'countries': get_countries()
                 }
                 return render(request, 'index.html', context)
 

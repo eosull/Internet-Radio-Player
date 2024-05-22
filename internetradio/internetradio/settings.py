@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-eosull-internetradiopla-l07v6xef1e3.ws-eu114.gitpod.io']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-l07v6xef1e3.ws-eu111.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-l07v6xef1e3.ws-eu114.gitpod.io']
 
 # Application definition
 
