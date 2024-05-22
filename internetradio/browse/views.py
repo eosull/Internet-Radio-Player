@@ -89,12 +89,12 @@ def index(request):
 
 def country_sort(term):
     rb = RadioBrowser()
-    search_return = rb.search(countrycode=term, order="votes", hidebroken=True)
+    search_return = rb.search(countrycode=term, order="votes", reverse=True, hidebroken=True)
     return search_return
 
 def genre_sort(term):
     reb = RadioBrowser()
-    search_return = rb.search(tag=term, order="votes", hidebroken=True)
+    search_return = rb.search(tag=term, order="votes", reverse=True, hidebroken=True)
     return search_return
 
 def get_countries():
