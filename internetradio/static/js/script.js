@@ -92,10 +92,15 @@ function playStream(button) {
   changeStreamControls(button, 'play');
   // Get stream details and trigger playback bar
   let buttonId = button.getAttribute('id');
-  let stationNameId = buttonId.replace('play-icon', 'station-name');
-  let stationName = document.querySelector('#' + CSS.escape(stationNameId)).innerHTML;
-  document.querySelector('.station-title').innerHTML = stationName;
+  document.querySelector('.station-title').innerHTML = extractStationInfo(buttonId, 'station-name');
+  document.querySelector('.pb-station-country').innerHTML = extractStationInfo(buttonId, 'station-country');
+  document.querySelector('.pb-station-homepage').href = extractStationInfo(buttonId, 'station-homepage');
   showPlaybackBar(buttonId);
+}
+
+function extractStationInfo(buttonId, idType) {
+  let Id = buttonId.replace('play-icon', idType);
+  return document.querySelector('#' + CSS.escape(Id)).innerHTML;
 }
 
 function pauseStream(button) {

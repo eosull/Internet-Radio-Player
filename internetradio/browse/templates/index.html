@@ -64,6 +64,9 @@
                   </div>
                 </div>
                 <h3 class="lh-1 my-auto fw-bold" id="{{ result.stationuuid }}station-name">{{ result.name|truncatechars:30}}</h3>
+                <!-- Adding Station Country and Homepage for Sending to Playback Bar -->
+                <p class="d-none" id="{{ result.stationuuid }}station-country">{{ result.country }}</p>
+                <p class="d-none" id="{{ result.stationuuid }}station-homepage">{{ result.homepage }}</p>
             </div>  
             </div>
           {% endfor %}
@@ -152,26 +155,29 @@
     <!-- Playback Bar -->
     <div class="row m-0 playback-footer d-none">
         <div class="col-md-4 d-flex align-items-evenly w-100">
-          <div class="playback-bar-audio-player d-inline float-start">
+          <div class="playback-bar-audio-player d-inline float-start d-flex align-items-center">
             <button class="audio-player-button pb-bar-play pb-bar-button audio-play d-none"><i class="bi bi-play-fill fs-2"></i></button>
             <button class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-block"><i class="bi bi-pause-fill fs-2"></i></button>
           </div>
           <div class="d-inline flex-fill text-center">
             <h3 class="station-title mx-auto">Station Name</h3>
-            <hr class="temp-playback-bar">
+            <div>
+              <small class="pb-station-country d-inline">Station Country</small>
+              <small><a class="pb-station-homepage" href="">Station Website</a></small>
+            </div>
           </div>
-          <div class="d-inline float-end">
-            <button class="fs-2 d-block audio-player-button m-auto" id="hide-playback"><i class="bi bi-arrow-down-short"></i></button>
-            <button class="fs-2 d-none audio-player-button m-auto" id="show-playback"><i class="bi bi-arrow-up-short"></i></button>
+          <div class="d-inline float-end d-flex align-items-center">
+            <button class="d-block audio-player-button m-auto" id="hide-playback"><i class="bi bi-arrow-down-short fs-2"></i></button>
+            <button class="d-none audio-player-button m-auto" id="show-playback"><i class="bi bi-arrow-up-short fs-2"></i></button>
           </div>
           </div>
     </div>
 
     <!-- Random Station Playback Bar -->
     {% if random_station %}
-    <div id="rand-playback-footer" class="row m-0 playback-footer d-block">
+    <div id="rand-playback-footer" class="row m-0 playback-footer">
       <div class="col-md-4 d-flex align-items-evenly w-100">
-        <div class="playback-bar-audio-player d-inline float-start">
+        <div class="playback-bar-audio-player d-inline float-start d-flex align-items-center">
           <audio src="{{ random_station.url }}" id="{{ random_station.stationuuid }}audio">
             Your browser does not support the audio element.
           </audio>
@@ -179,12 +185,15 @@
           <button id="{{ random_station.stationuuid }}pause-icon" class="audio-player-button pb-bar-pause pb-bar-button audio-pause d-none"><i class="bi bi-pause-fill fs-2"></i></button>
         </div>
         <div class="d-inline flex-fill text-center">
-          <h3 class="station-title mx-auto">{{random_station.name}}</h3>
-          <hr class="temp-playback-bar">
+          <h3 class="station-title mx-auto">{{ random_station.name }}</h3>
+          <div>
+            <small class="pb-station-country d-inline">{{ random_station.country }}</small>
+            <small><a class="pb-station-homepage" href="{{ random_station.homepage }}">Station Website</a></small>
+          </div>
         </div>
-        <div class="d-inline float-end">
-          <button class="fs-2 d-block audio-player-button m-auto" id="hide-rand-playback"><i class="bi bi-arrow-down-short"></i></button>
-          <button class="fs-2 d-none audio-player-button m-auto" id="show-rand-playback"><i class="bi bi-arrow-up-short"></i></button>
+        <div class="d-inline float-end d-flex align-items-center">
+          <button class="d-block audio-player-button m-auto" id="hide-rand-playback"><i class="bi bi-arrow-down-short fs-2"></i></button>
+          <button class="d-none audio-player-button m-auto" id="show-rand-playback"><i class="bi bi-arrow-up-short fs-2"></i></button>
         </div>
         </div>
   </div>
