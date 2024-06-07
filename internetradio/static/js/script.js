@@ -88,7 +88,15 @@ function playStream(button) {
   // Get audio id from custom button id
   let audioId = button.getAttribute('id').replace('play-icon', 'audio');
   let audio = document.querySelector('#' + CSS.escape(audioId));
-  audio.play();
+  var playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(function() {
+    }).catch(function(error) {
+      // Playback Failed Error
+      // To add UI element....
+      console.log("Playback Failed!");
+    });
+  }
   changeStreamControls(button, 'play');
   // Get stream details and trigger playback bar
   let buttonId = button.getAttribute('id');
