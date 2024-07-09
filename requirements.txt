@@ -3,3 +3,4 @@ Django==5.0.2
 gunicorn==22.0.0
 pyradios==2.1.0
 sqlparse==0.5.0
+whitenoise==6.7.0
