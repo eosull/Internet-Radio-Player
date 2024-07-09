@@ -94,7 +94,7 @@ function playStream(button) {
     }).catch(function(error) {
       // Playback Failed Error
       console.log("Playback Failed!");
-      alert("Sorry, this station is currently unavailable! Please try another.");
+      alert("Sorry, this station is currently unavailable - Please try another or follow the station link in the playback bar!.");
     });
   }
   changeStreamControls(button, 'play');
