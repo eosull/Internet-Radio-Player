@@ -14,20 +14,25 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$h!yty-=19lqrnoaat6w*7m5g5z9+=1bxiig9fjlp)z@fu-7(x'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io']
+ALLOWED_HOSTS = ['8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io',
+                'my-radio.herokuapp.com',
+                ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io',
+                        'my-radio.herokuapp.com',
+                        ]
 
 # Application definition
 
@@ -56,7 +61,7 @@ ROOT_URLCONF = 'internetradio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
