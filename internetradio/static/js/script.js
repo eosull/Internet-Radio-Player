@@ -93,8 +93,8 @@ function playStream(button) {
     playPromise.then(function() {
     }).catch(function(error) {
       // Playback Failed Error
-      // To add UI element....
       console.log("Playback Failed!");
+      alert("Sorry, this station is currently unavailable! Please try another.");
     });
   }
   changeStreamControls(button, 'play');
