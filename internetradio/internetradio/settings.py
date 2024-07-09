@@ -27,11 +27,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = ['8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io',
-                'my-radio.herokuapp.com',
+                'my-radio-6317b171cd19.herokuapp.com',
                 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-eosull-internetradiopla-nfpluktzryt.ws-eu115.gitpod.io',
-                        'my-radio.herokuapp.com',
+                        'my-radio-6317b171cd19.herokuapp.com',
                         ]
 
 # Application definition
