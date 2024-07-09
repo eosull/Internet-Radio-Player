@@ -1,1 +1,1 @@
-web: gunicorn internetradio.wsgi:application
+web: gunicorn internetradio.wsgi:wsgi
